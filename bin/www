@@ -1,6 +1,8 @@
-const app = require('../server/server');
+const services = require('../services');
+const app = require('../server')(services);
 
-const port = 8000;
+const port = services.config.has('Web.port') ? services.config.get('Web.port') : 8000;
+
 app.listen(port, () => {
-  console.log('running at localhost: ' + port);
+  services.logger.info('Web Server running at localhost: ' + port);
 });

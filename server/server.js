@@ -1,5 +1,5 @@
 const express = require('express');
-const router = require('./routes/routes.js');
+const router = require('./routes');
 const path = require('path');
 
 const app = express();
@@ -10,4 +10,6 @@ app.use(express.static(path.join(__dirname, '..', 'client')));
 
 app.use('/', router);
 
-module.exports = app;
+module.exports = (services) => {
+  return app;
+};
