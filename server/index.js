@@ -1,3 +1,5 @@
 module.exports = (services) => {
-  return require('./server')(services);
+  return {
+    web: require('./server')(services)
+  };
 };

@@ -15,6 +15,7 @@
     "express": "^4.16.3",
     "js-yaml": "^3.11.0",
     "nodemon": "^1.17.3",
+    "npm-run-all": "^4.1.2",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.3.2",
@@ -24,8 +25,10 @@
     "stream-blackhole": "^1.0.3"
   },
   "scripts": {
+    "server": "node bin/www",
     "webpack": "webpack",
-    "start": "node bin/www",
-    "debug": "nodemon --inspect bin/www | bunyan -o short && webpack --watch"
+    "webpack:watch": "webpack --watch",
+    "server:watch": "nodemon --inspect bin/www",
+    "start": "npm-run-all --parallel webpack:watch server:watch"
   }
 }
