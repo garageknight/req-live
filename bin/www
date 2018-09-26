@@ -1,8 +1,11 @@
 const services = require('../services');
 const { web } = require('../server')(services);
 
-const port = services.config.has('Web.port') ? services.config.get('Web.port') : 8000;
+const logger = services.logger;
+const webOpts = services.config.get('Web');
 
+const port = webOpts.port || 8000;
 web.listen(port, () => {
-  services.logger.info('Web Server running at localhost: ' + port);
+  logger.info(`Web Server running at localhost: ${port}`);
+  logger.debug(`Process  ID: ${process.pid}`);
 });
